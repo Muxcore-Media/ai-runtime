@@ -1,0 +1,28 @@
+services:
+  core:
+    image: ${MUXCORE_REGISTRY:-git.zem.systems/muxcore}/muxcored:${MUXCORE_IMAGE_TAG:-v0.5.8}
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    environment:
+      MUXCORE_INSECURE_DISABLE_TLS: "true"
+      MUXCORE_LOG_LEVEL: debug
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--tries=1", "--spider", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 5s
+
+  ai-runtime:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    environment:
+      MUXCORE_GRPC_ADDR: core:9090
+      MUXCORE_INSECURE_DISABLE_TLS: "true"
+      MUXCORE_LOG_LEVEL: debug
+      MUXCORE_MODULE_ID: ai-runtime
+    depends_on:
+      core:
+        condition: service_healthy

@@ -1,0 +1,10 @@
+{
+  "name": "AI Runtime",
+  "description": "Shared AI inference gateway (complete, embed, transcribe, classify)",
+  "version": "0.1.0",
+  "author": "Muxcore-Media",
+  "roles": ["ai"],
+  "capabilities": ["ai.runtime", "settings"],
+  "contracts": ["contracts-ai"],
+  "minCoreVersion": "0.5.8"
+}
