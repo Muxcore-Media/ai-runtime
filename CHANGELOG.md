@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased]
+
+### Security
+- OpenAI-compatible completion requests go through netguard Integration (private LAN and loopback allowed for a local model server; link-local, cloud metadata, and non-HTTP schemes refused) (NFR-SEC-009).
+
 ## [0.1.2] - 2026-10-05
 
 ### Changed

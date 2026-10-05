@@ -306,7 +306,7 @@ func (p OpenAIProvider) client() *http.Client {
 	if p.HTTPClient != nil {
 		return p.HTTPClient
 	}
-	return &http.Client{Timeout: 30 * time.Second}
+	return newGuardedClient(30 * time.Second)
 }
 
 func (p OpenAIProvider) Complete(ctx context.Context, req infer.CompleteRequest) (infer.CompleteResponse, error) {
@@ -316,6 +316,9 @@ func (p OpenAIProvider) Complete(ctx context.Context, req infer.CompleteRequest)
 	base := strings.TrimRight(p.BaseURL, "/")
 	if base == "" {
 		base = "https://api.openai.com"
+	}
+	if err := guardOutboundURL(base + "/v1/chat/completions"); err != nil {
+		return infer.CompleteResponse{}, err
 	}
 	model := p.Model
 	if model == "" {
