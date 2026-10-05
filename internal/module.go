@@ -10,11 +10,11 @@ import (
 	"sync"
 	"time"
 
+	manifest "github.com/Muxcore-Media/ai-runtime"
 	"github.com/Muxcore-Media/core/pkg/contracts"
+	modulesdk "github.com/Muxcore-Media/core/sdk/go/module"
 	"google.golang.org/grpc"
 )
-
-const moduleVersion = "0.1.0"
 
 type Module struct {
 	id, grpcAddr, httpAddr string
@@ -96,7 +96,7 @@ func (m *Module) rebuildRouter() {
 
 func (m *Module) Info() contracts.ModuleInfo {
 	return contracts.ModuleInfo{
-		ID: m.id, Name: "AI Runtime", Version: moduleVersion,
+		ID: m.id, Name: "AI Runtime", Version: modulesdk.ManifestVersion(manifest.ManifestJSON),
 		Roles:          []string{"ai"},
 		Description:    "Shared AI inference gateway (complete, embed, transcribe, classify)",
 		Author:         "Muxcore-Media",

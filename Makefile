@@ -2,7 +2,7 @@
 
 GO ?= go
 VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo "0.0.0-dev")
-LDFLAGS ?= -s -w -X main.version=$(VERSION)
+LDFLAGS ?= -s -w
 BINARY ?= ai-runtime
 
 build:
