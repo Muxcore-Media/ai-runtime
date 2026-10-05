@@ -1,7 +1,7 @@
 {
   "name": "AI Runtime",
   "description": "Shared AI inference gateway (complete, embed, transcribe, classify)",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Muxcore-Media",
   "roles": [
     "ai"
