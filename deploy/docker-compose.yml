@@ -1,6 +1,6 @@
 services:
   core:
-    image: ${MUXCORE_REGISTRY:-git.zem.systems/muxcore}/muxcored:${MUXCORE_IMAGE_TAG:-v0.5.8}
+    image: ${MUXCORE_REGISTRY:-localhost:5000/muxcore}/muxcored:${MUXCORE_IMAGE_TAG:-v0.5.8}
     ports:
       - "8080:8080"
       - "9090:9090"
